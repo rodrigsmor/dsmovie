@@ -6,7 +6,7 @@ import MovieCard from 'components/MovieCard';
 import Pagination from 'components/Pagination';
 
 function Listing() {
-    const [ pageNumber, setPageNumber ] = useState(1);
+    const [ pageNumber, setPageNumber ] = useState(0);
     const [ page, setPage ] = useState<MoviePage>({
         content: [],
         last: true,
@@ -28,9 +28,13 @@ function Listing() {
             });
     }, [ pageNumber ]);
 
+    const handlePageChange = (newPageNumber : number) => {
+        setPageNumber(newPageNumber);
+    }
+
     return (
         <>
-            <Pagination />
+            <Pagination page={page} onChange={handlePageChange} />
             <div className={"container"}>
                 <div className={'row'}>
                     {
